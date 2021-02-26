@@ -117,122 +117,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"slider.js":[function(require,module,exports) {
-"use strict";
+})({"app.js":[function(require,module,exports) {
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-var Slider = /*#__PURE__*/function () {
-  function Slider() {
-    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        _ref$sliderSelector = _ref.sliderSelector,
-        sliderSelector = _ref$sliderSelector === void 0 ? '.slider' : _ref$sliderSelector,
-        _ref$sliderContainerS = _ref.sliderContainerSelector,
-        sliderContainerSelector = _ref$sliderContainerS === void 0 ? '.slider__container' : _ref$sliderContainerS,
-        _ref$previousSelector = _ref.previousSelector,
-        previousSelector = _ref$previousSelector === void 0 ? '.previous' : _ref$previousSelector,
-        _ref$nextSelector = _ref.nextSelector,
-        nextSelector = _ref$nextSelector === void 0 ? '.next' : _ref$nextSelector,
-        _ref$transitionTime = _ref.transitionTime,
-        transitionTime = _ref$transitionTime === void 0 ? 3000 : _ref$transitionTime;
-
-    _classCallCheck(this, Slider);
-
-    this.slider = document.querySelector(sliderSelector);
-    this.slides = document.querySelectorAll("".concat(sliderContainerSelector, " img")).length;
-    this.sliderContainer = document.querySelector(sliderContainerSelector);
-    this.previousBtn = document.querySelector(previousSelector);
-    this.nextBtn = document.querySelector(nextSelector);
-    this.slideSize = this.slider.offsetWidth;
-    this.currentSlide = 0;
-    this.setEventListeners();
-    this.generateShortCuts();
-    this.setAutoPlay(transitionTime);
-  }
-
-  _createClass(Slider, [{
-    key: "moveSlides",
-    value: function moveSlides() {
-      this.sliderContainer.style.transform = "translateX(-".concat(this.currentSlide * this.slideSize, "px)");
-      Array.from(this.shortcuts.children).forEach(function (shortcut) {
-        return shortcut.classList.remove('active');
-      });
-      this.shortcuts.children[this.currentSlide].classList.add('active');
-    }
-  }, {
-    key: "nextSlide",
-    value: function nextSlide() {
-      this.currentSlide = this.currentSlide >= this.slides - 1 ? 0 : this.currentSlide + 1;
-      this.moveSlides();
-    }
-  }, {
-    key: "previousSlide",
-    value: function previousSlide() {
-      this.currentSlide = this.currentSlide <= 0 ? this.slides - 1 : this.currentSlide - 1;
-      this.moveSlides();
-    }
-  }, {
-    key: "setEventListeners",
-    value: function setEventListeners() {
-      this.nextBtn.addEventListener('click', this.nextSlide.bind(this));
-      this.previousBtn.addEventListener('click', this.previousSlide.bind(this));
-    }
-  }, {
-    key: "generateShortCuts",
-    value: function generateShortCuts() {
-      var _this = this;
-
-      var shortcuts = document.createElement('div');
-      shortcuts.classList.add('shortcuts');
-
-      var _loop = function _loop(i) {
-        var dot = document.createElement('span');
-        dot.addEventListener('click', function () {
-          _this.currentSlide = i;
-
-          _this.moveSlides();
-        });
-        dot.classList.add('shortcut');
-        shortcuts.appendChild(dot);
-      };
-
-      for (var i = 0; i < this.slides; i += 1) {
-        _loop(i);
-      }
-
-      shortcuts.firstChild.classList.add('active');
-      this.slider.appendChild(shortcuts);
-      this.shortcuts = shortcuts;
-    }
-  }, {
-    key: "setAutoPlay",
-    value: function setAutoPlay(transitionTime) {
-      setInterval(this.nextSlide.bind(this), transitionTime);
-    }
-  }]);
-
-  return Slider;
-}();
-
-exports.default = Slider;
-},{}],"app.js":[function(require,module,exports) {
-"use strict";
-
-var _slider = _interopRequireDefault(require("./slider"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-new _slider.default();
-},{"./slider":"slider.js"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -260,7 +147,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51355" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60041" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -436,5 +323,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel/src/builtins/hmr-runtime.js","app.js"], null)
+},{}]},{},["../../../../../usr/local/share/.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.js"], null)
 //# sourceMappingURL=/app.c328ef1a.js.map
