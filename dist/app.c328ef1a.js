@@ -155,12 +155,17 @@ var Slider = /*#__PURE__*/function () {
     this.slideSize = this.slider.offsetWidth;
     this.currentSlide = 0;
     this.setEventListeners();
+    this.generateShortcuts();
   }
 
   _createClass(Slider, [{
     key: "moveSlides",
     value: function moveSlides() {
       this.sliderContainer.style.transform = "translateX(-".concat(this.currentSlide * this.slideSize, "px)");
+      Array.from(this.shortcuts.children).forEach(function (shortcut) {
+        return shortcut.classList.remove('active');
+      });
+      this.shortcuts.children[this.currentSlide].classList.add('active');
     }
   }, {
     key: "nextSlide",
@@ -178,6 +183,33 @@ var Slider = /*#__PURE__*/function () {
     value: function setEventListeners() {
       this.nextBtn.addEventListener('click', this.nextSlide.bind(this));
       this.previousBtn.addEventListener('click', this.previousSlide.bind(this));
+    }
+  }, {
+    key: "generateShortcuts",
+    value: function generateShortcuts() {
+      var _this = this;
+
+      var shortcuts = document.createElement('div');
+      shortcuts.classList.add('shortcuts');
+
+      var _loop = function _loop(i) {
+        var dot = document.createElement('span');
+        dot.addEventListener('click', function () {
+          _this.currentSlide = i;
+
+          _this.moveSlides();
+        });
+        dot.classList.add('shortcut');
+        shortcuts.appendChild(dot);
+      };
+
+      for (var i = 0; i < this.slides; i++) {
+        _loop(i);
+      }
+
+      shortcuts.firstChild.classList.add('active');
+      this.slider.appendChild(shortcuts);
+      this.shortcuts = shortcuts;
     }
   }]);
 

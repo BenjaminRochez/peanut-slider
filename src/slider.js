@@ -15,11 +15,13 @@ export default class Slider {
     this.currentSlide = 0;
 
     this.setEventListeners();
-
+    this.generateShortcuts();
   }  
 
   moveSlides(){
       this.sliderContainer.style.transform = `translateX(-${this.currentSlide * this.slideSize}px)`;
+      Array.from(this.shortcuts.children).forEach(shortcut => shortcut.classList.remove('active'));
+      this.shortcuts.children[this.currentSlide].classList.add('active');
   }
 
   nextSlide(){
@@ -34,6 +36,26 @@ export default class Slider {
   setEventListeners(){
     this.nextBtn.addEventListener('click', this.nextSlide.bind(this));
     this.previousBtn.addEventListener('click', this.previousSlide.bind(this));
+  }
+
+  generateShortcuts(){
+      const shortcuts = document.createElement('div');
+
+      shortcuts.classList.add('shortcuts');
+
+      for (let i = 0; i<this.slides; i++){
+          const dot = document.createElement('span');
+          dot.addEventListener('click', () => {
+              this.currentSlide = i;
+              this.moveSlides();
+          });
+          dot.classList.add('shortcut');
+          shortcuts.appendChild(dot);
+      }
+
+      shortcuts.firstChild.classList.add('active');
+      this.slider.appendChild(shortcuts);
+      this.shortcuts = shortcuts;
   }
 
 }
