@@ -156,6 +156,7 @@ var Slider = /*#__PURE__*/function () {
     this.currentSlide = 0;
     this.setEventListeners();
     this.generateShortcuts();
+    this.setAutoPlay(transition);
   }
 
   _createClass(Slider, [{
@@ -210,6 +211,11 @@ var Slider = /*#__PURE__*/function () {
       shortcuts.firstChild.classList.add('active');
       this.slider.appendChild(shortcuts);
       this.shortcuts = shortcuts;
+    }
+  }, {
+    key: "setAutoPlay",
+    value: function setAutoPlay(transitionTime) {
+      setInterval(this.nextSlide.bind(this), transitionTime);
     }
   }]);
 

@@ -16,6 +16,7 @@ export default class Slider {
 
     this.setEventListeners();
     this.generateShortcuts();
+    this.setAutoPlay(transition);
   }  
 
   moveSlides(){
@@ -58,4 +59,7 @@ export default class Slider {
       this.shortcuts = shortcuts;
   }
 
+  setAutoPlay(transitionTime){
+      setInterval(this.nextSlide.bind(this), transitionTime);
+  }
 }
