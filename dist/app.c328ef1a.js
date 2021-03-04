@@ -177,7 +177,8 @@ var Slider = /*#__PURE__*/function () {
   }, {
     key: "previousSlide",
     value: function previousSlide() {
-      this.current = this.currentSlide <= 0 ? this.slides - 1 : this.currentSlide - 1;
+      this.currentSlide = this.currentSlide <= 0 ? this.slides - 1 : this.currentSlide - 1;
+      this.moveSlides();
     }
   }, {
     key: "setEventListeners",

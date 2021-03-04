@@ -31,7 +31,8 @@ export default class Slider {
   }
 
   previousSlide(){
-      this.current = this.currentSlide <= 0 ? this.slides - 1 : this.currentSlide -1;
+      this.currentSlide = this.currentSlide <= 0 ? this.slides - 1 : this.currentSlide -1;
+      this.moveSlides();
   }
 
   setEventListeners(){
